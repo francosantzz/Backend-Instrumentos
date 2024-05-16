@@ -19,24 +19,18 @@ public class BackendReactInicialApplication {
 
     @PostConstruct
     public void init() {
+        saveCategoriaIfNotExists("Viento");
+        saveCategoriaIfNotExists("Percusión");
+        saveCategoriaIfNotExists("Cuerda");
+        saveCategoriaIfNotExists("Teclado");
+        saveCategoriaIfNotExists("Electronico");
+    }
 
-        if (categoriaRepository.findById(1L).isEmpty()) {
-            Categoria c1 = new Categoria();
-            c1.setDenominacion("Viento");
-            Categoria c2 = new Categoria();
-            c2.setDenominacion("Percusión");
-            Categoria c3 = new Categoria();
-            c3.setDenominacion("Cuerda");
-            Categoria c4 = new Categoria();
-            c4.setDenominacion("Teclado");
-            Categoria c5 = new Categoria();
-            c5.setDenominacion("Electronico");
-
-            categoriaRepository.save(c1);
-            categoriaRepository.save(c2);
-            categoriaRepository.save(c3);
-            categoriaRepository.save(c4);
-            categoriaRepository.save(c5);
+    private void saveCategoriaIfNotExists(String denominacion) {
+        if (categoriaRepository.findByDenominacion(denominacion).isEmpty()) {
+            Categoria categoria = new Categoria();
+            categoria.setDenominacion(denominacion);
+            categoriaRepository.save(categoria);
         }
     }
 }
