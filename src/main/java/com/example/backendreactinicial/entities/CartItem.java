@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartItem {
+    private Long id;
     private String instrumento;
     private int cantidad;
     private BigDecimal precio;

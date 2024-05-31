@@ -18,9 +18,9 @@ public class Instrumento extends Base{
     private String marca;
     private String modelo;
     private String imagen;
-    private String precio;
+    private Double precio;
     private String costoEnvio;
-    private String cantidadVendida;
+    private Integer cantidadVendida;
     @Column(length = 1000)
     private String descripcion;
 

@@ -1,6 +1,7 @@
 package com.example.backendreactinicial.controllers;
 
 import com.example.backendreactinicial.entities.CartItem;
+import com.example.backendreactinicial.repositories.InstrumentoRepository;
 import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.client.preference.PreferenceClient;
 import com.mercadopago.client.preference.PreferenceItemRequest;
@@ -9,6 +10,7 @@ import com.mercadopago.client.preference.PreferenceRequest;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.preference.Preference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
@@ -23,9 +25,12 @@ public class MercadoPagoController {
     @Value("${mercadopago.access_token}")
     private String accessToken;
 
+
     @PostMapping("/create-preference")
     public String createPreference(@RequestBody List<CartItem> cartItems) throws MPException, MPApiException {
         MercadoPagoConfig.setAccessToken(accessToken);
+
+
 
         List<PreferenceItemRequest> items = cartItems.stream().map(cartItem -> PreferenceItemRequest.builder()
                 .title(cartItem.getInstrumento())
