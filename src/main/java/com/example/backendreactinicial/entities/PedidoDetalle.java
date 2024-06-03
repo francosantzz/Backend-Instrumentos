@@ -19,11 +19,6 @@ public class PedidoDetalle extends Base{
     private Integer cantidad;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    @JsonBackReference
-    private Pedido pedido;
-
-    @ManyToOne
     @JoinColumn(name = "instrumento_id")
     private Instrumento instrumento;
 

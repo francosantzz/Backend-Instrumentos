@@ -13,16 +13,5 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "/pedido-detalle")
 public class PedidoDetalleController extends BaseControllerImp<PedidoDetalle, PedidoDetalleServiceImpl>{
-    @PostMapping("/create-batch")
-    public ResponseEntity<?> createBatch(@RequestBody List<PedidoDetalle> detalles) {
-        try {
-            List<PedidoDetalle> savedDetalles = new ArrayList<>();
-            for (PedidoDetalle detalle : detalles) {
-                savedDetalles.add(servicio.save(detalle));
-            }
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedDetalles);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente mas tarde.\"}");
-        }
-    }
+
 }
